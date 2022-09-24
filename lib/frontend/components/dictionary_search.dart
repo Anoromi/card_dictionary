@@ -101,8 +101,7 @@ class _SuggestionListState extends State<SuggestionList> {
                     ),
                     reverse: true,
                     itemCount: data.length,
-                  )
-                  );
+                  ));
             },
             stream: displayedSuggestions.stream,
           );
@@ -239,7 +238,7 @@ class FullTermItem extends StatelessWidget {
                 children: List.generate(
                   term?.data.length ?? 0,
                   (index) {
-                    final data = term!.data[index];
+                    final data = term!.data[term!.data.length - index - 1];
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 4, vertical: 5),

@@ -36,18 +36,18 @@ class CardDefinition extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-            padding: const EdgeInsets.all(10.0),
-            alignment: Alignment.topCenter,
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            alignment: Alignment.topLeft,
             child: Text(
               front,
-              style: theme.textTheme.titleMedium?.copyWith(color: textColor),
+              style: theme.textTheme.titleSmall?.copyWith(color: textColor),
             ),
           ),
-          flex: mode == DisplayMode.term ? 1 : 3,
+          flex: mode == DisplayMode.term ? 2 : 3,
         ),
         Flexible(
             child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
           child: Icon(Icons.arrow_forward_ios_rounded,
               color: theme.colorScheme.onSurface.withOpacity(0.6)),
         )),
@@ -57,7 +57,7 @@ class CardDefinition extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: back
                 .map((e) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
                       child: Text(
                         e,
                         style: theme.textTheme.bodyLarge
@@ -66,7 +66,7 @@ class CardDefinition extends StatelessWidget {
                     ))
                 .toList(),
           ),
-          flex: mode == DisplayMode.term ? 3 : 1,
+          flex: mode == DisplayMode.term ? 3 : 2,
         ),
       ],
     );
