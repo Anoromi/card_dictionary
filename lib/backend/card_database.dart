@@ -4,6 +4,7 @@ import 'package:drift/native.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:wordnet_dictionary_app/backend/card_daos.dart';
+import 'package:wordnet_dictionary_app/backend/dummy_data.dart';
 import 'package:wordnet_dictionary_app/backend/tables.dart';
 import 'package:wordnet_dictionary_app/backend/data.dart';
 import 'package:wordnet_dictionary_app/backend/json_converter.dart';
@@ -29,14 +30,7 @@ class AppDatabase extends _$AppDatabase {
                 name: "",
                 lastAccessed: DateTime(0)));
 
-            Future insert(String name) async {
-              await (into(cardPack)).insert(CardPackCompanion.insert(
-                  name: name, lastAccessed: DateTime.now()));
-            }
-
-            await insert("example");
-            await insert("gaga");
-            await insert("hehe");
+            await insertDummyData(this);
           }
 
           await customStatement('PRAGMA foreign_keys = ON');

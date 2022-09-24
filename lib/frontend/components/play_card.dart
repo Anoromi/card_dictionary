@@ -13,31 +13,24 @@ class PlayCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    Widget displayedData;
+    List<Widget> displayedData;
     if (currentFront) {
-      displayedData = Center(
-        child: Text(front,
+      displayedData = [
+        Text(front,
             style: theme.textTheme.headlineSmall
-                ?.copyWith(color: theme.colorScheme.onPrimaryContainer)),
-      );
+                ?.copyWith(color: theme.colorScheme.onPrimaryContainer))
+      ];
     } else {
-      displayedData = Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: back
-                .map((e) => Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        e,
-                        style: theme.textTheme.titleLarge?.copyWith(
-                            color: theme.colorScheme.onPrimaryContainer),
-                      ),
-                    ))
-                .toList(),
-          ),
-        ),
-      );
+      displayedData = back
+          .map((e) => Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  e,
+                  style: theme.textTheme.titleLarge
+                      ?.copyWith(color: theme.colorScheme.onPrimaryContainer),
+                ),
+              ))
+          .toList();
     }
 
     return Material(
@@ -46,7 +39,14 @@ class PlayCard extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: Padding(
         padding: const EdgeInsets.all(30.0),
-        child: displayedData,
+        child: Center(
+          child: SingleChildScrollView(
+              child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: displayedData,
+          )),
+        ),
       ),
     );
   }

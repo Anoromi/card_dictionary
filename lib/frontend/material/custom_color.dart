@@ -1,6 +1,6 @@
 import 'package:wordnet_dictionary_app/lib.dart';
 
-import 'custom_color.g.dart';
+import 'custom_color_gen.dart';
 
 late CustomColors lightCustomColorsHarmonized;
 late CustomColors darkCustomColorsHarmonized;

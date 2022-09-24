@@ -1,4 +1,5 @@
 import 'package:wordnet_dictionary_app/frontend/components/card_definition.dart';
+import 'package:wordnet_dictionary_app/frontend/material/custom_color.dart';
 import 'package:wordnet_dictionary_app/frontend/pages/card_player.dart';
 import 'package:wordnet_dictionary_app/lib.dart';
 
@@ -23,14 +24,18 @@ class _PlayResultsScreenState extends State<PlayResultsScreen> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   widget.data.playData.cardInformation.name.name,
-                  style: theme.textTheme.titleMedium,
-                ),
-                Text(
-                  "${widget.data.rememberedIndexes.length}/${widget.data.cards.length}",
                   style: theme.textTheme.displayMedium,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                  child: Text(
+                    "${widget.data.rememberedIndexes.length}/${widget.data.cards.length}",
+                    style: theme.textTheme.displaySmall,
+                  ),
                 )
               ],
             ),
@@ -49,17 +54,18 @@ class _PlayResultsScreenState extends State<PlayResultsScreen> {
                 //     : theme.colorScheme.errorContainer,
                 color: theme.colorScheme.surface,
                 surfaceTintColor: gotRight
-                    ? theme.colorScheme.surfaceTint
+                    ? theme.custom.greenContainer
                     : theme.colorScheme.errorContainer,
                 elevation: 3,
                 // textStyle: theme.textTheme.bodyLarge.copyWith(),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: CardDefinition(
                     front: card.front,
                     back: card.back,
                     mode: DisplayMode.fromPlayMode(widget.data.playData.mode),
                     textColor: gotRight
-                        ? theme.colorScheme.onSurface
+                        ? theme.custom.onGreenContainer!
                         : theme.colorScheme.onErrorContainer),
               ),
             );

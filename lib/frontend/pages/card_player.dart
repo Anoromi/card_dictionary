@@ -51,8 +51,8 @@ class _CardPlayerScreenState extends State<CardPlayerScreen> {
 
   void move() {
     if (currentIndex + 1 == cardData.length) {
-      context.pop();
-      context.pushNamed("play_results",
+      // context.pop();
+      context.replaceNamed("play_results",
           extra: ResultsData(widget.data, cardData, rememberedIndexes));
     } else {
       nextCard();

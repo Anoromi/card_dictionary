@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:wordnet_dictionary_app/frontend/database_provider.dart';
 import 'package:wordnet_dictionary_app/frontend/material/color_schemes.g.dart';
 import 'package:wordnet_dictionary_app/frontend/material/custom_color.dart';
-import 'package:wordnet_dictionary_app/frontend/material/custom_color.g.dart';
+import 'package:wordnet_dictionary_app/frontend/material/custom_color_gen.dart';
 import 'package:wordnet_dictionary_app/frontend/model/main_navigation_model.dart';
 import 'package:wordnet_dictionary_app/frontend/router.dart';
 

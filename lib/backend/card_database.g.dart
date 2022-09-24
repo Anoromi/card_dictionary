@@ -157,7 +157,7 @@ class $CardPackTable extends CardPack
       'name', aliasedName, false,
       type: DriftSqlType.string,
       requiredDuringInsert: true,
-      defaultConstraints: 'UNIQUE');
+      $customConstraints: 'UNIQUE COLLATE NOCASE');
   final VerificationMeta _lastAccessedMeta =
       const VerificationMeta('lastAccessed');
   @override

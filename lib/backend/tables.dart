@@ -6,7 +6,7 @@ import 'package:wordnet_dictionary_app/backend/json_converter.dart';
 
 class CardPack extends Table {
   IntColumn get id => integer().autoIncrement()();
-  TextColumn get name => text().unique().customConstraint("COLLATE NOCASE")();
+  TextColumn get name => text().customConstraint("UNIQUE COLLATE NOCASE")();
   DateTimeColumn get lastAccessed => dateTime()();
 }
 
