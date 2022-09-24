@@ -3,6 +3,8 @@
 
 An application for easy study of new words.
 
+**/release** contains an apk for Android
+
 ![](./screenshots/dictionary.png)
 ![](./screenshots/card_packs.png)
 
