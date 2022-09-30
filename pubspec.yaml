@@ -54,6 +54,9 @@ dependencies:
     path: ^1.8.2
     go_router: ^5.0.0
     dynamic_color: ^1.5.4
+    animations: ^2.0.5
+    tuple: ^2.0.0
+    rxdart: ^0.27.5
 
 
 dev_dependencies:
