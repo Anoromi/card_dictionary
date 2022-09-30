@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:wordnet_dictionary_app/backend/card_daos.dart';
@@ -33,7 +34,7 @@ class AppDatabase extends _$AppDatabase {
             await insertDummyData(this);
           }
 
-          await customStatement('PRAGMA foreign_keys = ON');
+            await customStatement('PRAGMA foreign_keys = ON');
         },
       );
 }

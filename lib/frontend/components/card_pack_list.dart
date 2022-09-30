@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'dart:collection';
-import 'dart:isolate';
 
-import 'package:async/async.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:tuple/tuple.dart';
 import 'package:wordnet_dictionary_app/backend/card_daos.dart';
 import 'package:wordnet_dictionary_app/backend/card_database.dart';
 import 'package:wordnet_dictionary_app/frontend/material/theme_mixin.dart';
@@ -88,8 +85,8 @@ class _CardPackListState extends State<CardPackList> {
               initialItemCount: snapshot.data!,
               itemBuilder: (context, index, animation) => _CardPackListItem(
                   stream: request(index),
-                  open: () => widget.open(index),
-                  dispose: (() => finish(index))),
+                  open: widget.open,
+                  dispose: () => finish(index)),
             ),
           ],
         );
@@ -101,7 +98,7 @@ class _CardPackListState extends State<CardPackList> {
 class _CardPackListItem extends StatefulWidget {
   final Stream<CardPackData> stream;
   final VoidCallback dispose;
-  final VoidCallback open;
+  final Function(int id) open;
 
   const _CardPackListItem({
     required this.stream,
@@ -154,7 +151,7 @@ class __CardPackListItemState extends State<_CardPackListItem>
             return Card(
               clipBehavior: Clip.hardEdge,
               child: InkWell(
-                onTap: widget.open,
+                onTap: () => widget.open(item.id),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
