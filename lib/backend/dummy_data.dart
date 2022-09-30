@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:wordnet_dictionary_app/backend/card_database.dart';
 
 Future<void> insertDummyData(AppDatabase database) async {
@@ -9,7 +10,6 @@ Future<void> insertDummyData(AppDatabase database) async {
       for (var e in cards) {
         final term = await database.into(database.term).insertReturning(
             TermCompanion.insert(cardId: cardPack.id, name: e.key));
-        print(e.value);
         List<DefinitionData> definitions = [];
         for (var e in e.value) {
           final result = await (database.select(database.definition)
@@ -18,37 +18,14 @@ Future<void> insertDummyData(AppDatabase database) async {
           if (result != null) {
             definitions.add(result);
           } else {
-            final d = await (database.select(database.definition)).get();
-            // print("definitions $d");
-            // print(result);
-            // print(await (database.select(database.definition)
-            //       ..where((tbl) => tbl.definition.equals(e)))
-            //     .get());
             definitions
                 .add(await database.into(database.definition).insertReturning(
                       DefinitionCompanion.insert(
                           cardId: cardPack.id, definition: e),
-                      // mode: InsertMode.insertOrIgnore
                     ));
           }
         }
 
-        // print(await (database.select(database.term).get()));
-        // print(await (database.select(database.definition).get()));
-
-        // await Future.wait(e.value.map((e) async {
-        //   return await database.transaction(() async {
-        //     final result = await (database.select(database.definition)
-        //           ..where((tbl) => tbl.definition.equals(e)))
-        //         .getSingleOrNull();
-        //     if (result != null) {
-        //       return result;
-        //     }
-        //     return await () {
-        //       return
-        //     }();
-        //   });
-        // }));
         for (var definition in definitions) {
           await database.into(database.definitionToTerm).insert(
               DefinitionToTermCompanion.insert(
@@ -74,7 +51,9 @@ Future<void> insertDummyData(AppDatabase database) async {
     ])
   ]);
 
-  for (var i = 0; i < 100; i++) {
-    await insert("test $i");
+  if (!kReleaseMode) {
+    for (var i = 0; i < 100; i++) {
+      await insert("test $i");
+    }
   }
 }
