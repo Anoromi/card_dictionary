@@ -73,4 +73,8 @@ Future<void> insertDummyData(AppDatabase database) async {
           "So \"This is what card...\" definition will have two terms when you learn the cards"
     ])
   ]);
+
+  for (var i = 0; i < 100; i++) {
+    await insert("test $i");
+  }
 }
