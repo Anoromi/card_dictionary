@@ -58,11 +58,11 @@ class DisplayDefinition with _$DisplayDefinition {
 class Ha {}
 
 class CardInformation {
-  final CardPackData name;
+  final CardPackData cardPack;
   final List<DisplayTerm> terms;
   final List<DisplayDefinition> definitions;
 
-  const CardInformation(this.name, this.terms, this.definitions);
+  const CardInformation(this.cardPack, this.terms, this.definitions);
 }
 
 @freezed

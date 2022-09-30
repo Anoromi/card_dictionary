@@ -18,15 +18,5 @@ final api = RustImpl(dylib);
 
 
 void main() async {
-  nye(Object? v) {
-    return v ??
-        () {
-          print("Hello");
-          return 3;
-        }();
-  }
-
-  nye(3);
-  nye(null);
   runApp(const Main());
 }

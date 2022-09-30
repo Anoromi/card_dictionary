@@ -137,7 +137,7 @@ class CardsDao extends DatabaseAccessor<AppDatabase> with _$CardsDaoMixin {
 
   Stream<List<CardPackData>> watchRecentCardPacks(int skip, int limit) async* {
     final result = (select(cardPack)
-          ..where((tbl) => tbl.id.equals(1).not())
+          ..where((tbl) => tbl.id.equals(newItemsId).not())
           ..orderBy([(tbl) => OrderingTerm.desc(tbl.lastAccessed)])
           ..limit(limit, offset: skip))
         .watch();
@@ -177,6 +177,10 @@ class CardsDao extends DatabaseAccessor<AppDatabase> with _$CardsDaoMixin {
     return (await connectionExists.getSingleOrNull()) != null
         ? UseOption.exists
         : UseOption.no;
+  }
+
+  Future<void> updateCardUse(int cardId) async {
+    await (update(cardPack)..where((tbl) => tbl.id.equals(cardId))).write(CardPackCompanion(lastAccessed: Value(DateTime.now())));
   }
 }
 

@@ -21,7 +21,8 @@ class _CardListState extends State<CardList> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          title: Text(info.name.id == newItemsId ? "Recent" : info.name.name),
+          title: Text(
+              info.cardPack.id == newItemsId ? "Recent" : info.cardPack.name),
         ),
         SliverAnimatedList(
           itemBuilder: (context, index, animation) {
