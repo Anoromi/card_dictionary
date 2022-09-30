@@ -27,7 +27,7 @@ class _PlayResultsScreenState extends State<PlayResultsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.data.playData.cardInformation.name.name,
+                  widget.data.playData.cardInformation.cardPack.name,
                   style: theme.textTheme.displayMedium,
                 ),
                 Padding(

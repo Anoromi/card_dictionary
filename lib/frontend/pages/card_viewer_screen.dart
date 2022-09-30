@@ -81,10 +81,10 @@ class _CardViewerScreenState extends State<CardViewerScreen> {
     );
   }
 
-  void play(CardInformation data) async {
+  void play(CardInformation data, CardsDao cardsDao) async {
     final mode = await showPlaySheet();
     if (mode != null) {
-
+      cardsDao.updateCardUse(data.cardPack.id);
       context.pushNamed("play", extra: PlayData(data, mode));
     }
   }
@@ -101,7 +101,7 @@ class _CardViewerScreenState extends State<CardViewerScreen> {
         }
         final data = snapshot.data!;
         final playFab = FloatingActionButton.extended(
-          onPressed: () => play(data),
+          onPressed: () => play(data, cardDao),
           label: const Text("Learn"),
           icon: const Icon(Icons.play_arrow_rounded),
         );
